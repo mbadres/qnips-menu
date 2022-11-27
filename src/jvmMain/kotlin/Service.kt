@@ -24,7 +24,7 @@ data class Product(
 )
 
 data class Price(
-    @JsonProperty("Betrag") val figure: Double
+    @JsonProperty("Betrag") val amount: Double
 )
 
 data class Row(
