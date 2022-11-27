@@ -1,6 +1,5 @@
 import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -14,6 +13,7 @@ repositories {
     google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    gradlePluginPortal()
 }
 
 kotlin {
@@ -27,8 +27,11 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation("com.squareup.okhttp3:okhttp:4.10.0")
+                implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
             }
         }
+
         val jvmTest by getting
     }
 }
