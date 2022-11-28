@@ -1,9 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import okhttp3.OkHttpClient
-import okhttp3.Request
+package domain
 
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Menu(
     @JsonProperty("Allergens") val allergens: Map<String, Allergen>,
@@ -40,22 +37,3 @@ data class Day(
 data class ProductId(
     @JsonProperty("ProductId") val productId: Int
 )
-
-fun getMenu(): Menu {
-
-    val baseUrl = "https://my.qnips.io/dbapi/ha/"
-
-    val request = Request
-        .Builder()
-        .url(baseUrl)
-        .get()
-        .build()
-
-    val result = OkHttpClient()
-        .newCall(request)
-        .execute()
-        .body!!
-        .string()
-
-    return jacksonObjectMapper().readValue(result)
-}
